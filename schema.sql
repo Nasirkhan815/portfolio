@@ -215,6 +215,10 @@ create table if not exists public.site_settings (
     github_url text,
     address text,
     resume_url text,
+    primary_color text NOT NULL DEFAULT '#5d0bf1',
+    secondary_color text NOT NULL DEFAULT '#ff00ff',
+    font_family text NOT NULL DEFAULT 'Inter',
+    fab_icon text NOT NULL DEFAULT 'plus',
     created_at timestamp with time zone default timezone('utc'::text, now()) not null,
     updated_at timestamp with time zone default timezone('utc'::text, now()) not null
 );
@@ -297,3 +301,61 @@ create policy "Allow public delete to portfolio-images" on storage.objects
     for delete using (bucket_id = 'portfolio-images');
 
 
+-- 10. PROCESS SETTINGS TABLE (SINGLETON)
+create table if not exists public.process_settings (
+    id text primary key default 'process_settings',
+    subtitle text default 'How I Work',
+    title text default 'Creative Design & CGI Process',
+    steps jsonb default '[
+      {
+        "num": "01",
+        "icon": "search",
+        "title": "Discover & Research",
+        "subtitle": "Discovery Phase",
+        "description": "Aligning on core business goals, auditing competitor frameworks, and mapping target user demographics to outline detailed accessibility flowcharts."
+      },
+      {
+        "num": "02",
+        "icon": "compass",
+        "title": "Define & Wireframe",
+        "subtitle": "Structure Phase",
+        "description": "Formulating cohesive user journey loops, establishing responsive screen structural blocks, and testing dynamic interactive low-fidelity layouts."
+      },
+      {
+        "num": "03",
+        "icon": "palette",
+        "title": "High-Fidelity Design",
+        "subtitle": "Styling Phase",
+        "description": "Creating comprehensive, responsive design libraries, managing dynamic visual typography systems, and establishing complete vector layouts in Figma."
+      },
+      {
+        "num": "04",
+        "icon": "sparkles",
+        "title": "CGI & 3D Rendering",
+        "subtitle": "Artistic Enhancement",
+        "description": "Modeling bespoke 3D products, composing lighting and texture coordinates, and rendering cinematic visual assets to elevate brand presentation."
+      },
+      {
+        "num": "05",
+        "icon": "send",
+        "title": "Hand-Off & Delivery",
+        "subtitle": "Deployment Phase",
+        "description": "Delivering unified design tokens, organized component libraries, developer documentation, and overseeing code-verification alignments."
+      }
+    ]'::jsonb,
+    status text default 'published' check (status in ('draft', 'published')),
+    created_at timestamp with time zone default timezone('utc'::text, now()) not null,
+    updated_at timestamp with time zone default timezone('utc'::text, now()) not null
+);
+
+drop trigger if exists update_process_settings_updated_at on public.process_settings;
+create trigger update_process_settings_updated_at before update on public.process_settings
+    for each row execute function update_updated_at_column();
+
+alter table public.process_settings enable row level security;
+
+drop policy if exists "Allow public read access to process_settings" on public.process_settings;
+drop policy if exists "Allow full admin access to process_settings" on public.process_settings;
+
+create policy "Allow public read access to process_settings" on public.process_settings for select using (true);
+create policy "Allow full admin access to process_settings" on public.process_settings for all using (auth.role() = 'authenticated');

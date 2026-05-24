@@ -6,7 +6,7 @@ import Image from "next/image";
 import { 
   LayoutDashboard, Zap, User, Code2, Briefcase, 
   Sparkles, GraduationCap, Quote, Mail, Settings, 
-  LogOut, Menu, X, ArrowLeft
+  LogOut, Menu, X, ArrowLeft, Milestone
 } from "lucide-react";
 import { useState, useEffect } from "react";
 import { createClient } from "@/utils/supabase/client";
@@ -24,11 +24,13 @@ const navItems: SidebarItem[] = [
   { name: "Skills Core", href: "/admin/dashboard/skills", icon: Code2 },
   { name: "Projects Portfolio", href: "/admin/dashboard/projects", icon: Briefcase },
   { name: "Services", href: "/admin/dashboard/services", icon: Sparkles },
+  { name: "Workflow Process", href: "/admin/dashboard/process", icon: Milestone },
   { name: "Experience Timeline", href: "/admin/dashboard/experience", icon: GraduationCap },
   { name: "Testimonials", href: "/admin/dashboard/testimonials", icon: Quote },
   { name: "Messages Inbox", href: "/admin/dashboard/messages", icon: Mail },
   { name: "Site Settings", href: "/admin/dashboard/settings", icon: Settings },
 ];
+
 
 export default function Sidebar() {
   const pathname = usePathname();

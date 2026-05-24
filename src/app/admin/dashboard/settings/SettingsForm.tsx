@@ -141,6 +141,68 @@ export default function SettingsForm({ initialData }: { initialData: SettingsDat
                     className="w-full px-4 py-3 rounded-xl text-xs bg-black/45 border border-white/[0.06] text-white focus:outline-none focus:border-neon-blue/50 transition-colors"
                   />
                 </div>
+
+                    {/* Primary Color */}
+                    <div className="flex flex-col space-y-2">
+                      <label htmlFor="primary_color" className="text-xs font-semibold text-gray-400">
+                        Primary Brand Color
+                      </label>
+                      <input
+                        type="color"
+                        id="primary_color"
+                        name="primary_color"
+                        defaultValue={initialData.primary_color}
+                        className="w-16 h-8 rounded-md border border-white/[0.06] focus:outline-none"
+                      />
+                    </div>
+                    {/* Secondary Color */}
+                    <div className="flex flex-col space-y-2">
+                      <label htmlFor="secondary_color" className="text-xs font-semibold text-gray-400">
+                        Secondary Brand Color
+                      </label>
+                      <input
+                        type="color"
+                        id="secondary_color"
+                        name="secondary_color"
+                        defaultValue={initialData.secondary_color}
+                        className="w-16 h-8 rounded-md border border-white/[0.06] focus:outline-none"
+                      />
+                    </div>
+                    {/* Font Family */}
+                    <div className="flex flex-col space-y-2">
+                      <label htmlFor="font_family" className="text-xs font-semibold text-gray-400">
+                        Base Font Family
+                      </label>
+                      <select
+                        id="font_family"
+                        name="font_family"
+                        defaultValue={initialData.font_family}
+                        className="w-full bg-black/45 border border-white/[0.06] rounded-xl px-2 py-1 text-xs text-white focus:outline-none focus:border-neon-purple/50"
+                      >
+                        <option value="Inter">Inter</option>
+                        <option value="Outfit">Outfit</option>
+                        <option value="Roboto">Roboto</option>
+                        <option value="Poppins">Poppins</option>
+                      </select>
+                    </div>
+                    {/* FAB Icon */}
+                    <div className="flex flex-col space-y-2">
+                      <label htmlFor="fab_icon" className="text-xs font-semibold text-gray-400">
+                        FAB Icon
+                      </label>
+                      <select
+                        id="fab_icon"
+                        name="fab_icon"
+                        defaultValue={initialData.fab_icon}
+                        className="w-full bg-black/45 border border-white/[0.06] rounded-xl px-2 py-1 text-xs text-white focus:outline-none focus:border-neon-purple/50"
+                      >
+                        <option value="plus">Plus</option>
+                        <option value="send">Send</option>
+                        <option value="zap">Zap</option>
+                        <option value="sparkles">Sparkles</option>
+                        <option value="settings">Settings</option>
+                      </select>
+                    </div>
               </div>
 
               {/* Physical Location Address */}

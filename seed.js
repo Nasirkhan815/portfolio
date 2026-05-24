@@ -618,6 +618,63 @@ async function seedDatabase() {
   if (testError) console.error("❌ Error seeding testimonials:", testError.message);
   else console.log(`✅ ${testimonialsList.length} testimonials seeded successfully.`);
 
+
+  // =========================================================================
+  // 9. SEED PROCESS SETTINGS
+  // =========================================================================
+  console.log("⚙️  Seeding 'process_settings'...");
+  const processSettings = {
+    id: 'process_settings',
+    subtitle: 'How I Work',
+    title: 'Creative Design & CGI Process',
+    steps: [
+      {
+        num: '01',
+        icon: 'search',
+        title: 'Discover & Research',
+        subtitle: 'Discovery Phase',
+        description: 'Aligning on core business goals, auditing competitor frameworks, and mapping target user demographics to outline detailed accessibility flowcharts.'
+      },
+      {
+        num: '02',
+        icon: 'compass',
+        title: 'Define & Wireframe',
+        subtitle: 'Structure Phase',
+        description: 'Formulating cohesive user journey loops, establishing responsive screen structural blocks, and testing dynamic interactive low-fidelity layouts.'
+      },
+      {
+        num: '03',
+        icon: 'palette',
+        title: 'High-Fidelity Design',
+        subtitle: 'Styling Phase',
+        description: 'Creating comprehensive, responsive design libraries, managing dynamic visual typography systems, and establishing complete vector layouts in Figma.'
+      },
+      {
+        num: '04',
+        icon: 'sparkles',
+        title: 'CGI & 3D Rendering',
+        subtitle: 'Artistic Enhancement',
+        description: 'Modeling bespoke 3D products, composing lighting and texture coordinates, and rendering cinematic visual assets to elevate brand presentation.'
+      },
+      {
+        num: '05',
+        icon: 'send',
+        title: 'Hand-Off & Delivery',
+        subtitle: 'Deployment Phase',
+        description: 'Delivering unified design tokens, organized component libraries, developer documentation, and overseeing code-verification alignments.'
+      }
+    ],
+    status: 'published'
+  };
+
+  const { error: processError } = await supabase
+    .from('process_settings')
+    .upsert(processSettings);
+
+  if (processError) console.error("❌ Error seeding process_settings:", processError.message);
+  else console.log("✅ 'process_settings' seeded successfully.");
+
+
   console.log("\n💎 Database Seeding Finished Successfully! Your portfolio website is ready. 💎\n");
 }
 

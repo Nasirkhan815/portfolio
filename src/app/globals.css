@@ -1,26 +1,134 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-inter), system-ui, -apple-system, sans-serif;
+  --font-display: var(--font-outfit), system-ui, -apple-system, sans-serif;
+  
+  /* Premium Palette (Primary Lime Green Brand Theme: #c8f31d) */
+  --color-obsidian-900: #030303;
+  --color-obsidian-800: #050508;
+  --color-obsidian-700: #0d0d15;
+  --color-obsidian-600: #121220;
+  
+  --color-neon-purple: #c8f31d; /* Nasir's Primary Lime Green */
+  --color-neon-pink: #a2db0b;   /* Secondary Lime Gradient Shader */
+  --color-neon-blue: #06b6d4;   /* High-Tech Cyan Accent */
+  --color-neon-emerald: #10b981;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* Custom Utilities and Animations */
+@layer utilities {
+  .text-glow-purple {
+    text-shadow: 0 0 20px rgba(200, 243, 29, 0.4);
+  }
+  .text-glow-emerald {
+    text-shadow: 0 0 20px rgba(16, 185, 129, 0.4);
+  }
+  .glass-card {
+    background: rgba(13, 13, 21, 0.4);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  }
+  .glass-card-hover {
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .glass-card-hover:hover {
+    background: rgba(13, 13, 21, 0.6);
+    border-color: rgba(139, 92, 246, 0.3);
+    box-shadow: 0 10px 40px -10px rgba(139, 92, 246, 0.15);
+    transform: translateY(-4px);
+  }
+  .bg-grid-pattern {
+    background-size: 40px 40px;
+    background-image: 
+      linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+  }
+  .bg-dot-pattern {
+    background-size: 24px 24px;
+    background-image: radial-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+  }
+  
+  /* Premium Glow & Keyframe Utilities */
+  .animate-gradient-glow {
+    background-size: 200% 200%;
+    animation: gradient-shift 12s ease infinite;
+  }
+  .animate-pulse-glow {
+    animation: pulse-ambient 8s ease-in-out infinite;
+  }
+  .animate-grid-shift {
+    animation: grid-movement 60s linear infinite;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@keyframes gradient-shift {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
 }
+
+@keyframes pulse-ambient {
+  0%, 100% {
+    opacity: 0.35;
+    transform: scale(1) translate(0px, 0px);
+  }
+  33% {
+    opacity: 0.6;
+    transform: scale(1.08) translate(30px, -20px);
+  }
+  66% {
+    opacity: 0.45;
+    transform: scale(0.95) translate(-20px, 40px);
+  }
+}
+
+@keyframes grid-movement {
+  0% {
+    background-position: 0px 0px;
+  }
+  100% {
+    background-position: 40px 40px;
+  }
+}
+
+
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #050508;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 5px;
+  border: 2px solid #050508;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(200, 243, 29, 0.5);
+}
+
+/* Scroll Snap and Behavior fixes */
+html {
+  scrollbar-gutter: stable;
+}
+
+body {
+  overflow-x: hidden;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Base styles for display headings */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+}
+

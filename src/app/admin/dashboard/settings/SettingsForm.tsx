@@ -16,6 +16,17 @@ interface SettingsData {
   linkedin_url: string;
   github_url: string;
   resume_url: string;
+  primary_color?: string;
+  secondary_color?: string;
+  accent_color?: string;
+  background_color?: string;
+  text_color?: string;
+  font_family?: string;
+  favicon_url?: string;
+  og_image_url?: string;
+  site_title?: string;
+  site_description?: string;
+  footer_text?: string;
 }
 
 export default function SettingsForm({ initialData }: { initialData: SettingsData }) {

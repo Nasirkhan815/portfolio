@@ -140,13 +140,13 @@ export default function About() {
                   <div className="w-8 h-8 rounded-lg bg-neon-purple/10 flex items-center justify-center text-neon-purple">
                     <Compass className="w-4 h-4" />
                   </div>
-                  <span className="text-xs font-semibold text-gray-300">Spatial UI Architecture</span>
+                  <span className="text-xs font-semibold text-gray-300">{aboutData?.tag_one_text || "UI/UX Design Systems"}</span>
                 </div>
                 <div className="flex items-center gap-3">
                   <div className="w-8 h-8 rounded-lg bg-neon-pink/10 flex items-center justify-center text-neon-pink">
                     <Star className="w-4 h-4" />
                   </div>
-                  <span className="text-xs font-semibold text-gray-300">Cinematic CGI Production</span>
+                  <span className="text-xs font-semibold text-gray-300">{aboutData?.tag_two_text || "Branding & Visual Design"}</span>
                 </div>
               </div>
 

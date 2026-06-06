@@ -12,6 +12,8 @@ export default async function AboutPage() {
 
   const defaults = {
     section_heading: "Creative Story & Branding Philosophy",
+    tag_one_text: "UI/UX Design Systems",
+    tag_two_text: "Branding & Visual Design",
     title: "Bridging Artistic CGI Expression with Pixel-Perfect Product UX",
     subtitle: "Visual Architect",
     paragraphs: [

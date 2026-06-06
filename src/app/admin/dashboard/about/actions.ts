@@ -12,6 +12,8 @@ export async function updateAbout(prevState: any, formData: FormData) {
     const title = (formData.get("title") as string) || null;
     const subtitle = (formData.get("subtitle") as string) || null;
     const section_heading = (formData.get("section_heading") as string) || null;
+    const tag_one_text = (formData.get("tag_one_text") as string) || null;
+    const tag_two_text = (formData.get("tag_two_text") as string) || null;
 
     // Retrieve the three paragraphs
     const p1 = formData.get("paragraph_1") as string;
@@ -57,6 +59,8 @@ export async function updateAbout(prevState: any, formData: FormData) {
         title,
         subtitle,
         section_heading,
+        tag_one_text,
+        tag_two_text,
         paragraphs,
         stats,
         updated_at: new Date().toISOString()

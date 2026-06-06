@@ -16,6 +16,8 @@ interface AboutData {
   section_heading?: string;
   title: string;
   subtitle: string;
+  tag_one_text?: string;
+  tag_two_text?: string;
   paragraphs: string[];
   stats: StatItem[];
 }
@@ -107,6 +109,36 @@ export default function AboutForm({ initialData }: { initialData: AboutData }) {
               placeholder="Creative Story & Branding Philosophy"
               className="w-full px-4 py-3 rounded-xl text-xs bg-black/45 border border-white/[0.06] text-white focus:outline-none focus:border-neon-purple/50 transition-colors"
             />
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+            <div className="flex flex-col space-y-2">
+              <label htmlFor="tag_one_text" className="text-xs font-semibold text-gray-400">
+                Bottom Tag 1
+              </label>
+              <input
+                type="text"
+                id="tag_one_text"
+                name="tag_one_text"
+                defaultValue={initialData.tag_one_text || ""}
+                placeholder="UI/UX Design Systems"
+                className="w-full px-4 py-3 rounded-xl text-xs bg-black/45 border border-white/[0.06] text-white focus:outline-none focus:border-neon-purple/50 transition-colors"
+              />
+            </div>
+
+            <div className="flex flex-col space-y-2">
+              <label htmlFor="tag_two_text" className="text-xs font-semibold text-gray-400">
+                Bottom Tag 2
+              </label>
+              <input
+                type="text"
+                id="tag_two_text"
+                name="tag_two_text"
+                defaultValue={initialData.tag_two_text || ""}
+                placeholder="Branding & Visual Design"
+                className="w-full px-4 py-3 rounded-xl text-xs bg-black/45 border border-white/[0.06] text-white focus:outline-none focus:border-neon-purple/50 transition-colors"
+              />
+            </div>
           </div>
 
           {/* Paragraph 1 */}

@@ -129,6 +129,8 @@ async function seedDatabase() {
   const aboutSettings = {
     id: 'about_settings',
     section_heading: 'Creative Story & Branding Philosophy',
+    tag_one_text: 'UI/UX Design Systems',
+    tag_two_text: 'Branding & Visual Design',
     subtitle: 'Visual Architect',
     title: 'Bridging Artistic CGI Expression with Pixel-Perfect Product UX',
     paragraphs: [

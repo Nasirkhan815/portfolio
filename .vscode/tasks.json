@@ -1,0 +1,30 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Git commit and push updated files",
+			"type": "shell",
+			"command": "cd \"d:\\it data\\Vibe Coding Project\\Protfolio\" && git add -A && git commit -m \"cms: add favicon upload, dynamic favicon and editable about heading\" && git push",
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Git commit and push updated files",
+			"type": "shell",
+			"command": "cd \"d:\\it data\\Vibe Coding Project\\Protfolio\"; git add -A; git commit -m \"cms: add favicon upload, dynamic favicon and editable about heading\"; git push",
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Git commit and push updated files",
+			"type": "shell",
+			"command": "cmd.exe",
+			"args": [
+				"/c",
+				"cd /d \"d:\\it data\\Vibe Coding Project\\Protfolio\" && git add -A && git commit -m \"cms: add favicon upload, dynamic favicon and editable about heading\" && git push"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		}
+	]
+}

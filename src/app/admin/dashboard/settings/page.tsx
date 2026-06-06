@@ -11,6 +11,7 @@ export default async function SettingsPage() {
     .single();
 
   const defaults = {
+    favicon_url: "/favicon.ico",
     title: "Nasir Khan | Premium UX/UI Designer & CGI Artist",
     description: "Senior UX/UI Designer & 3D CG Artist at Axis Craft Studio. Bridging the boundary between artistic CGI rendering and functional UX architecture.",
     logo_url: "/logo.png",

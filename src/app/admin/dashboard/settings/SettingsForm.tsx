@@ -35,11 +35,13 @@ interface SettingsData {
 export default function SettingsForm({ initialData }: { initialData: SettingsData }) {
   const [logoUrl, setLogoUrl] = useState(initialData.logo_url || "");
   const [resumeUrl, setResumeUrl] = useState(initialData.resume_url || "");
+  const [faviconUrl, setFaviconUrl] = useState(initialData.favicon_url || "");
 
   const [state, formAction, isPending] = useActionState(
     async (prevState: any, formData: FormData) => {
       formData.set("logo_url", logoUrl);
       formData.set("resume_url", resumeUrl);
+      formData.set("favicon_url", faviconUrl);
       return await updateSettings(prevState, formData);
     },
     { success: false, error: "" }
@@ -318,6 +320,45 @@ export default function SettingsForm({ initialData }: { initialData: SettingsDat
               bucket="portfolio-images"
               accept="image/png, image/webp, image/svg+xml"
             />
+          </div>
+
+          {/* Favicon Uploader */}
+          <div className="glass-card rounded-2xl border border-white/[0.06] p-6 sm:p-8 relative overflow-hidden bg-obsidian-950/40">
+            <div className="absolute inset-0 bg-gradient-to-tr from-white/[0.005] to-white/[0.02] -z-10 rounded-2xl" />
+            <h3 className="text-sm font-bold font-display text-white uppercase tracking-wider mb-6 flex items-center gap-2">
+              <Sparkles className="w-4 h-4 text-neon-emerald" /> Favicon
+            </h3>
+
+            <div className="space-y-3">
+              <ImageUploader
+                value={faviconUrl}
+                onChange={setFaviconUrl}
+                label="Upload Favicon"
+                bucket="portfolio-images"
+                accept="image/png, image/x-icon, image/vnd.microsoft.icon, image/svg+xml, image/jpeg"
+                pathPrefix="favicons"
+                fixedNamePrefix="favicon"
+                useTimestamp={true}
+                allowedTypes={["image/png", "image/x-icon", "image/vnd.microsoft.icon", "image/svg+xml", "image/jpeg"]}
+                maxSizeBytes={1024 * 1024}
+              />
+
+              <div className="flex flex-col space-y-2">
+                <label htmlFor="favicon_url" className="text-xs font-semibold text-gray-400">
+                  Favicon URL
+                </label>
+                <input
+                  type="url"
+                  id="favicon_url"
+                  name="favicon_url"
+                  value={faviconUrl}
+                  onChange={(e) => setFaviconUrl(e.target.value)}
+                  placeholder="Paste favicon image URL"
+                  className="w-full px-3 py-2 rounded-xl text-xs bg-black/45 border border-white/[0.06] text-white focus:outline-none focus:border-neon-purple/50 transition-colors"
+                />
+                <span className="text-[10px] text-gray-500">Recommended favicon size: 32x32px or 48x48px PNG/ICO.</span>
+              </div>
+            </div>
           </div>
 
           {/* Submit */}

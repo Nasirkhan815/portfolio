@@ -13,6 +13,7 @@ interface StatItem {
 }
 
 interface AboutData {
+  section_heading?: string;
   title: string;
   subtitle: string;
   paragraphs: string[];
@@ -91,6 +92,21 @@ export default function AboutForm({ initialData }: { initialData: AboutData }) {
                 className="w-full px-4 py-3 rounded-xl text-xs bg-black/45 border border-white/[0.06] text-white focus:outline-none focus:border-neon-purple/50 transition-colors"
               />
             </div>
+          </div>
+
+          {/* Main Heading */}
+          <div className="flex flex-col space-y-2">
+            <label htmlFor="section_heading" className="text-xs font-semibold text-gray-400">
+              Main Heading
+            </label>
+            <input
+              type="text"
+              id="section_heading"
+              name="section_heading"
+              defaultValue={initialData.section_heading || ""}
+              placeholder="Creative Story & Branding Philosophy"
+              className="w-full px-4 py-3 rounded-xl text-xs bg-black/45 border border-white/[0.06] text-white focus:outline-none focus:border-neon-purple/50 transition-colors"
+            />
           </div>
 
           {/* Paragraph 1 */}

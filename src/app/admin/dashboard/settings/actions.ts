@@ -17,6 +17,7 @@ export async function updateSettings(prevState: any, formData: FormData) {
   const linkedin_url = formData.get("linkedin_url") as string;
   const github_url = formData.get("github_url") as string;
   const resume_url = formData.get("resume_url") as string;
+  const favicon_url = formData.get("favicon_url") as string;
 
   const { error } = await supabase
     .from("site_settings")
@@ -24,6 +25,7 @@ export async function updateSettings(prevState: any, formData: FormData) {
       title,
       description,
       logo_url,
+      favicon_url,
       email,
       phone,
       address,

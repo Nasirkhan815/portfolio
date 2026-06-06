@@ -11,6 +11,16 @@ interface ImageUploaderProps {
   label?: string;
   bucket?: string;
   accept?: string;
+  // Optional fixed path prefix inside bucket, e.g. 'favicons'
+  pathPrefix?: string;
+  // Optional fixed filename prefix, e.g. 'favicon'
+  fixedNamePrefix?: string;
+  // If true, use timestamp for filename instead of sanitized original name
+  useTimestamp?: boolean;
+  // Optional allowed MIME types list for extra validation
+  allowedTypes?: string[];
+  // Optional max size in bytes
+  maxSizeBytes?: number;
 }
 
 export default function ImageUploader({
@@ -19,6 +29,7 @@ export default function ImageUploader({
   label = "Upload Image",
   bucket = "portfolio-images",
   accept = "image/*"
+  , pathPrefix, fixedNamePrefix, useTimestamp = false, allowedTypes, maxSizeBytes
 }: ImageUploaderProps) {
   const supabase = createClient();
   const [isDragging, setIsDragging] = useState(false);
@@ -33,14 +44,39 @@ export default function ImageUploader({
       setError(null);
       setProgress(10);
 
+      // Validate file type if allowedTypes provided
+      if (allowedTypes && allowedTypes.length > 0) {
+        if (!allowedTypes.includes(file.type)) {
+          throw new Error("Invalid file type for upload.");
+        }
+      }
+
+      // Validate max size if provided
+      if (maxSizeBytes && file.size > maxSizeBytes) {
+        throw new Error("File is too large. Maximum allowed size is " + Math.round(maxSizeBytes / 1024) + "KB.");
+      }
+
       // 1. Generate unique file path
       const fileExt = file.name.split(".").pop();
-      const sanitizedFileName = file.name
-        .replace(/\.[^/.]+$/, "")
-        .replace(/[^a-zA-Z0-9]/g, "-")
-        .toLowerCase();
       const randomId = Math.random().toString(36).substring(2, 9);
-      const filePath = `${sanitizedFileName}-${randomId}.${fileExt}`;
+      let filename = "";
+      if (fixedNamePrefix) {
+        if (useTimestamp) {
+          filename = `${fixedNamePrefix}-${Date.now()}.${fileExt}`;
+        } else {
+          filename = `${fixedNamePrefix}-${randomId}.${fileExt}`;
+        }
+      } else if (useTimestamp) {
+        filename = `file-${Date.now()}.${fileExt}`;
+      } else {
+        const sanitizedFileName = file.name
+          .replace(/\.[^/.]+$/, "")
+          .replace(/[^a-zA-Z0-9]/g, "-")
+          .toLowerCase();
+        filename = `${sanitizedFileName}-${randomId}.${fileExt}`;
+      }
+
+      const filePath = pathPrefix ? `${pathPrefix}/${filename}` : filename;
 
       setProgress(30);
 

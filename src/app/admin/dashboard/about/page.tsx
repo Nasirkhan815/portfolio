@@ -11,6 +11,7 @@ export default async function AboutPage() {
     .single();
 
   const defaults = {
+    section_heading: "Creative Story & Branding Philosophy",
     title: "Bridging Artistic CGI Expression with Pixel-Perfect Product UX",
     subtitle: "Visual Architect",
     paragraphs: [
@@ -26,7 +27,7 @@ export default async function AboutPage() {
     ]
   };
 
-  const initialData = data || defaults;
+  const initialData = data ? { ...defaults, ...data } : defaults;
 
   return (
     <div className="space-y-6 text-left">

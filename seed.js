@@ -46,6 +46,7 @@ async function seedDatabase() {
   console.log("⚙️  Seeding 'site_settings'...");
   const siteSettings = {
     id: 'site_settings',
+    favicon_url: '/favicon.ico',
     title: 'Nasir Khan | Premium UI/UX Designer & CG Artist',
     description: 'Portfolio website of Nasir Khan, a Senior UI/UX Designer and 3D CG Artist with 10+ years of certified experience. Bridging the gap between artistic CGI rendering and functional user experiences.',
     logo_url: '/logo.png',
@@ -127,6 +128,7 @@ async function seedDatabase() {
   console.log("📖 Seeding 'about_settings'...");
   const aboutSettings = {
     id: 'about_settings',
+    section_heading: 'Creative Story & Branding Philosophy',
     subtitle: 'Visual Architect',
     title: 'Bridging Artistic CGI Expression with Pixel-Perfect Product UX',
     paragraphs: [

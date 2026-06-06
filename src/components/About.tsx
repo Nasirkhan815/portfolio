@@ -75,7 +75,24 @@ export default function About() {
             transition={{ duration: 0.5, delay: 0.1 }}
             className="text-3xl sm:text-4xl md:text-5xl font-black font-display tracking-tight text-white"
           >
-            Creative Story & <span className="text-transparent bg-clip-text bg-gradient-to-r from-neon-purple to-neon-pink">Branding Philosophy</span>
+            {
+              (() => {
+                const heading = aboutData?.section_heading || "Creative Story & Branding Philosophy";
+                const marker = "Branding Philosophy";
+                if (heading.includes(marker)) {
+                  const parts = heading.split(marker);
+                  return (
+                    <>
+                      {parts[0]}
+                      <span className="text-transparent bg-clip-text bg-gradient-to-r from-neon-purple to-neon-pink">{marker}</span>
+                      {parts[1]}
+                    </>
+                  );
+                }
+
+                return heading;
+              })()
+            }
           </motion.h2>
           <div className="w-12 h-1 bg-gradient-to-r from-neon-purple to-neon-pink rounded-full mt-4" />
         </div>

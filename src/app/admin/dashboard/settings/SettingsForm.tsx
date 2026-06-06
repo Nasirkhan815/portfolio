@@ -22,8 +22,10 @@ interface SettingsData {
   background_color?: string;
   text_color?: string;
   font_family?: string;
+
   favicon_url?: string;
   og_image_url?: string;
+
   site_title?: string;
   site_description?: string;
   footer_text?: string;

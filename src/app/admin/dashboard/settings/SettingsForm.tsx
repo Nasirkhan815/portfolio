@@ -5,7 +5,7 @@ import { Terminal, Save, CheckCircle2, AlertCircle, Loader2, Sparkles, Globe, Li
 import ImageUploader from "@/components/admin/ImageUploader";
 import { updateSettings } from "./actions";
 
-interface SettingsData {
+//interface SettingsData {
   title: string;
   description: string;
   logo_url: string;
@@ -29,8 +29,24 @@ interface SettingsData {
   site_title?: string;
   site_description?: string;
   footer_text?: string;
-}
+//}
 
+
+type SettingsData = {
+  [key: string]: string | number | boolean | null | undefined;
+  primary_color?: string;
+  secondary_color?: string;
+  accent_color?: string;
+  background_color?: string;
+  text_color?: string;
+  font_family?: string;
+  logo_url?: string;
+  favicon_url?: string;
+  og_image_url?: string;
+  site_title?: string;
+  site_description?: string;
+  footer_text?: string;
+};
 export default function SettingsForm({ initialData }: { initialData: SettingsData }) {
   const [logoUrl, setLogoUrl] = useState(initialData.logo_url || "");
   const [resumeUrl, setResumeUrl] = useState(initialData.resume_url || "");

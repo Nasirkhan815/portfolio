@@ -4,19 +4,20 @@ import { useActionState, startTransition } from "react";
 import { Terminal, Mail, Loader2, ArrowRight, CheckCircle } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { requestPasswordReset } from "./actions";
+import { requestPasswordReset, type ForgotPasswordState } from "./actions";
 
-const initialState = {
+const initialState: ForgotPasswordState = {
   error: "",
-  success: false,
+ success: false,
 };
 
 export default function ForgotPasswordPage() {
-  const [state, formAction, isPending] = useActionState(
+  const [state, formAction, isPending] = useActionState<ForgotPasswordState, FormData>(
     requestPasswordReset,
     initialState
   );
 
+  
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
